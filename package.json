@@ -1,0 +1,25 @@
+{
+  "name": "@kocal/logger",
+  "version": "0.0.1-alpha.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kocal/logger.git"
+  },
+  "keywords": [
+    "log",
+    "logger",
+    "logging",
+    "format"
+  ],
+  "author": "Hugo Alliaume <kocal@live.fr>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Kocal/logger/issues"
+  },
+  "homepage": "https://github.com/Kocal/logger#readme"
+}
