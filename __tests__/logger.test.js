@@ -118,4 +118,19 @@ describe('Logger', function () {
     expect(console.log).toHaveBeenCalledWith('message=Log 2nd message :: count=1 username=kocal');
     expect(count).toBe(1);
   });
+
+  test('additional variables should override variables', () => {
+    const logger = Logger.getLogger();
+
+    logger.setFormat((ctx, vars) => `message=${ctx.message} :: count=${vars.count}`);
+    logger.setVariables({
+      count: 0,
+    });
+
+    logger.log('Log message');
+    expect(console.log).toHaveBeenCalledWith('message=Log message :: count=0');
+
+    logger.log('Log message', { count: '9000' });
+    expect(console.log).toHaveBeenCalledWith('message=Log message :: count=9000');
+  });
 });
