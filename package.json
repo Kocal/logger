@@ -1,0 +1,33 @@
+{
+  "name": "@kocal/logger",
+  "version": "0.0.1-alpha.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kocal/logger.git"
+  },
+  "keywords": [
+    "log",
+    "logger",
+    "logging",
+    "format"
+  ],
+  "author": "Hugo Alliaume <kocal@live.fr>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Kocal/logger/issues"
+  },
+  "homepage": "https://github.com/Kocal/logger#readme",
+  "dependencies": {
+    "chalk": "^2.3.1",
+    "luxon": "^0.5.0"
+  },
+  "devDependencies": {
+    "codecov": "^3.0.0",
+    "jest": "^22.3.0"
+  }
+}
