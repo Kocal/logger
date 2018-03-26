@@ -24,7 +24,7 @@
   "homepage": "https://github.com/Kocal/logger#readme",
   "dependencies": {
     "chalk": "^2.3.1",
-    "luxon": "^0.5.0"
+    "luxon": "^1.0.0"
   },
   "devDependencies": {
     "codecov": "^3.0.0",
