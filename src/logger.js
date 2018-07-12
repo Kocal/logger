@@ -6,6 +6,12 @@ const loggers = {};
 
 class Logger {
 
+  static get DEBUG() { return 'debug' };
+  static get LOG() { return 'log' };
+  static get INFO() { return 'info' };
+  static get WARN() { return 'warn' };
+  static get ERROR() { return 'error' };
+
   /**
    * @param {String} name
    * @param {Object} options
@@ -53,7 +59,7 @@ class Logger {
    * @param {Object} [additionalVariables={}]
    */
   debug(message, additionalVariables = {}) {
-    this._handle('debug', message, additionalVariables);
+    this._handle(Logger.DEBUG, message, additionalVariables);
   }
 
   /**
@@ -61,7 +67,7 @@ class Logger {
    * @param {Object} [additionalVariables={}]
    */
   log(message, additionalVariables = {}) {
-    this._handle('log', message, additionalVariables);
+    this._handle(Logger.LOG, message, additionalVariables);
   }
 
   /**
@@ -69,7 +75,7 @@ class Logger {
    * @param {Object} [additionalVariables={}]
    */
   info(message, additionalVariables = {}) {
-    this._handle('info', message, additionalVariables);
+    this._handle(Logger.INFO, message, additionalVariables);
   }
 
   /**
@@ -77,7 +83,7 @@ class Logger {
    * @param {Object} [additionalVariables={}]
    */
   warn(message, additionalVariables = {}) {
-    this._handle('warn', message, additionalVariables);
+    this._handle(Logger.WARN, message, additionalVariables);
   }
 
   /**
@@ -85,7 +91,7 @@ class Logger {
    * @param {Object} [additionalVariables={}]
    */
   error(message, additionalVariables = {}) {
-    this._handle('error', message, additionalVariables);
+    this._handle(Logger.ERROR, message, additionalVariables);
   }
 
   /**
@@ -110,10 +116,6 @@ class Logger {
    * @private
    */
   _handle(level, message = '', additionalVariables = {}) {
-    if (!['debug', 'log', 'info', 'warn', 'error'].includes(level)) {
-      throw new Error(`Expected a valid level name, got « ${level} ».`);
-    }
-
     const context = this._buildContext(level, message);
     const variables = {
       ...(typeof this._variables === 'function' ? this._variables() : this._variables),
