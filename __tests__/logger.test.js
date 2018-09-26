@@ -141,3 +141,86 @@ describe('Logger', function () {
     expect(console.log).toHaveBeenLastCalledWith('message=Log message :: count=9000');
   });
 });
+
+describe('Logger.setLevel()', () => {
+  beforeEach(() => {
+    console.debug = jest.fn();
+    console.log = jest.fn();
+    console.info = jest.fn();
+    console.warn = jest.fn();
+    console.error = jest.fn();
+  });
+
+  const logger = Logger.getLogger('set-level');
+  logger.setLevel('debug');
+  logger.setFormat(ctx => `[${ctx.level}] ${ctx.message}`);
+
+  const logAllLevels = () => [
+    'debug',
+    'log',
+    'info',
+    'warn',
+    'error',
+  ].forEach(level => logger[level]('My message'));
+
+  test('invalid level', () => {
+    expect(() => {
+      logger.setLevel('foo bar');
+    }).toThrow('Level "foo bar" is not a valid level.');
+  });
+
+  test('debug', () => {
+    logger.setLevel('debug');
+    logAllLevels();
+
+    expect(console.debug).toHaveBeenLastCalledWith('[debug] My message');
+    expect(console.log).toHaveBeenLastCalledWith('[log] My message');
+    expect(console.info).toHaveBeenLastCalledWith('[info] My message');
+    expect(console.warn).toHaveBeenLastCalledWith('[warn] My message');
+    expect(console.error).toHaveBeenLastCalledWith('[error] My message');
+  });
+
+  test('log', () => {
+    logger.setLevel('log');
+    logAllLevels();
+
+    expect(console.debug).not.toHaveBeenCalled();
+    expect(console.log).toHaveBeenLastCalledWith('[log] My message');
+    expect(console.info).toHaveBeenLastCalledWith('[info] My message');
+    expect(console.warn).toHaveBeenLastCalledWith('[warn] My message');
+    expect(console.error).toHaveBeenLastCalledWith('[error] My message');
+  });
+
+  test('info', () => {
+    logger.setLevel('info');
+    logAllLevels();
+
+    expect(console.debug).not.toHaveBeenCalled();
+    expect(console.log).not.toHaveBeenCalled();
+    expect(console.info).toHaveBeenLastCalledWith('[info] My message');
+    expect(console.warn).toHaveBeenLastCalledWith('[warn] My message');
+    expect(console.error).toHaveBeenLastCalledWith('[error] My message');
+  });
+
+  test('warn', () => {
+    logger.setLevel('warn');
+    logAllLevels();
+
+    expect(console.debug).not.toHaveBeenCalled();
+    expect(console.log).not.toHaveBeenCalled();
+    expect(console.info).not.toHaveBeenCalled();
+    expect(console.warn).toHaveBeenLastCalledWith('[warn] My message');
+    expect(console.error).toHaveBeenLastCalledWith('[error] My message');
+  });
+
+  test('error', () => {
+    logger.setLevel('error');
+    logAllLevels();
+
+    expect(console.debug).not.toHaveBeenCalled();
+    expect(console.log).not.toHaveBeenCalled();
+    expect(console.info).not.toHaveBeenCalled();
+    expect(console.warn).not.toHaveBeenCalled();
+    expect(console.error).toHaveBeenLastCalledWith('[error] My message');
+  });
+});

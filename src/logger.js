@@ -128,6 +128,10 @@ class Logger {
    * @private
    */
   _handle(level, message = '', additionalVariables = {}) {
+    if (priorities[level] > priorities[this._level]) {
+      return;
+    }
+
     const context = this._buildContext(level, message);
     const variables = {
       ...(typeof this._variables === 'function' ? this._variables() : this._variables),
