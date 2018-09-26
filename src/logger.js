@@ -41,7 +41,7 @@ class Logger {
    */
   setFormat(format = (ctx, variables) => `${ctx.luxon.toFormat('yyyy-LL-dd TT')} :: ${ctx.name} :: ${ctx.levelColor(ctx.level)} :: ${ctx.message}`) {
     if (typeof format !== 'function') {
-      throw new Error(`Arg « format » should be a function, got « ${typeof format} ».`);
+      throw new Error(`Arg "format" should be a function, got "${typeof format}".`);
     }
 
     this._format = format;
@@ -52,7 +52,7 @@ class Logger {
    */
   setVariables(variables = {}) {
     if (typeof variables !== 'function' && typeof variables !== 'object') {
-      throw new Error(`Arg « variables » should be a function or an object, got « ${typeof variables } »`);
+      throw new Error(`Arg "variables" should be a function or an object, got "${typeof variables }".`);
     }
 
     this._variables = variables;
