@@ -1,11 +1,17 @@
 const { DateTime } = require('luxon');
 const chalk = require('chalk');
-
 const utils = require('./utils');
+
 const loggers = {};
+const priorities = {
+  error: 0,
+  warn: 1,
+  info: 2,
+  log: 3,
+  debug: 4,
+};
 
 class Logger {
-
   /**
    * @param {String} name
    * @param {Object} options
@@ -20,11 +26,22 @@ class Logger {
   }
 
   /**
+   * @param {String} level
+   */
+  setLevel(level) {
+    if (!Object.keys(priorities).includes(level)) {
+      throw new Error(`Level "${level}" is not a valid level.`);
+    }
+
+    this._level = level;
+  }
+
+  /**
    * @param {Function} [format=(ctx, variables) => `...`]
    */
   setFormat(format = (ctx, variables) => `${ctx.luxon.toFormat('yyyy-LL-dd TT')} :: ${ctx.name} :: ${ctx.levelColor(ctx.level)} :: ${ctx.message}`) {
     if (typeof format !== 'function') {
-      throw new Error(`Arg « format » should be a function, got « ${typeof format} ».`);
+      throw new Error(`Arg "format" should be a function, got "${typeof format}".`);
     }
 
     this._format = format;
@@ -35,7 +52,7 @@ class Logger {
    */
   setVariables(variables = {}) {
     if (typeof variables !== 'function' && typeof variables !== 'object') {
-      throw new Error(`Arg « variables » should be a function or an object, got « ${typeof variables } »`);
+      throw new Error(`Arg "variables" should be a function or an object, got "${typeof variables }".`);
     }
 
     this._variables = variables;
@@ -99,6 +116,7 @@ class Logger {
     logger._name = name;
     logger.setFormat(options.format || undefined);
     logger.setVariables(options.variables || undefined);
+    logger.setLevel(options.level || 'info');
 
     return logger;
   }
@@ -110,8 +128,8 @@ class Logger {
    * @private
    */
   _handle(level, message = '', additionalVariables = {}) {
-    if (!['debug', 'log', 'info', 'warn', 'error'].includes(level)) {
-      throw new Error(`Expected a valid level name, got « ${level} ».`);
+    if (priorities[level] > priorities[this._level]) {
+      return;
     }
 
     const context = this._buildContext(level, message);
