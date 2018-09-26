@@ -1,6 +1,6 @@
 {
   "name": "@kocal/logger",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "The Node.js logger I have always dreamed of",
   "main": "index.js",
   "files": [
