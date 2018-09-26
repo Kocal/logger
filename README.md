@@ -39,6 +39,37 @@ namedLogger.debug('My message');
 // Write `2018-02-17 08:55:28 :: my-name :: debug :: My message`
 ```
 
+### Custom level
+
+Available levels are:
+
+- error
+- warn
+- info (default)
+- log
+- debug
+
+```js
+// at initialization
+const logger = Logger.getLogger('my-logger', {
+  level: 'info',
+});
+
+// at runtime
+logger.setLevel('info');
+```
+
+```js
+// will display something
+logger.error('Message'); 
+logger.warn('Message');
+logger.info('Message');
+
+// won't display anything
+logger.log('Message');
+logger.debug('Message'); 
+```
+
 ### Custom format
 
 The default format is: `yyyy-LL-dd TT :: loggerName :: levelColor(level) :: message`.
