@@ -1,17 +1,17 @@
 const { DateTime } = require('luxon');
 const chalk = require('chalk');
-
 const utils = require('./utils');
+
 const loggers = {};
+const priorities = {
+  error: 0,
+  warn: 1,
+  info: 2,
+  log: 3,
+  debug: 4,
+};
 
 class Logger {
-
-  static get DEBUG() { return 'debug' };
-  static get LOG() { return 'log' };
-  static get INFO() { return 'info' };
-  static get WARN() { return 'warn' };
-  static get ERROR() { return 'error' };
-
   /**
    * @param {String} name
    * @param {Object} options
@@ -70,7 +70,7 @@ class Logger {
    * @param {Object} [additionalVariables={}]
    */
   debug(message, additionalVariables = {}) {
-    this._handle(Logger.DEBUG, message, additionalVariables);
+    this._handle('debug', message, additionalVariables);
   }
 
   /**
@@ -78,7 +78,7 @@ class Logger {
    * @param {Object} [additionalVariables={}]
    */
   log(message, additionalVariables = {}) {
-    this._handle(Logger.LOG, message, additionalVariables);
+    this._handle('log', message, additionalVariables);
   }
 
   /**
@@ -86,7 +86,7 @@ class Logger {
    * @param {Object} [additionalVariables={}]
    */
   info(message, additionalVariables = {}) {
-    this._handle(Logger.INFO, message, additionalVariables);
+    this._handle('info', message, additionalVariables);
   }
 
   /**
@@ -94,7 +94,7 @@ class Logger {
    * @param {Object} [additionalVariables={}]
    */
   warn(message, additionalVariables = {}) {
-    this._handle(Logger.WARN, message, additionalVariables);
+    this._handle('warn', message, additionalVariables);
   }
 
   /**
@@ -102,7 +102,7 @@ class Logger {
    * @param {Object} [additionalVariables={}]
    */
   error(message, additionalVariables = {}) {
-    this._handle(Logger.ERROR, message, additionalVariables);
+    this._handle('error', message, additionalVariables);
   }
 
   /**
