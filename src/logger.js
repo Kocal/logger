@@ -26,6 +26,17 @@ class Logger {
   }
 
   /**
+   * @param {String} level
+   */
+  setLevel(level) {
+    if (!Object.keys(priorities).includes(level)) {
+      throw new Error(`Level "${level}" is not a valid level.`);
+    }
+
+    this._level = level;
+  }
+
+  /**
    * @param {Function} [format=(ctx, variables) => `...`]
    */
   setFormat(format = (ctx, variables) => `${ctx.luxon.toFormat('yyyy-LL-dd TT')} :: ${ctx.name} :: ${ctx.levelColor(ctx.level)} :: ${ctx.message}`) {
@@ -105,6 +116,7 @@ class Logger {
     logger._name = name;
     logger.setFormat(options.format || undefined);
     logger.setVariables(options.variables || undefined);
+    logger.setLevel(options.level || 'info');
 
     return logger;
   }
