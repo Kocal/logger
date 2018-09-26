@@ -1,8 +1,11 @@
 {
   "name": "@kocal/logger",
   "version": "1.0.0",
-  "description": "",
+  "description": "The Node.js logger I have always dreamed of",
   "main": "index.js",
+  "files": [
+    "src"
+  ],
   "scripts": {
     "test": "jest",
     "release": "standard-version"
