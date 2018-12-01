@@ -8,7 +8,6 @@
   ],
   "scripts": {
     "test": "jest",
-    "travis-deploy-once": "travis-deploy-once",
     "semantic-release": "semantic-release"
   },
   "repository": {
@@ -34,7 +33,6 @@
   "devDependencies": {
     "@kocal/semantic-release-preset": "^1.1.0",
     "jest": "^23.6.0",
-    "semantic-release": "^15.12.3",
-    "travis-deploy-once": "^5.0.9"
+    "semantic-release": "^15.12.3"
   }
 }
