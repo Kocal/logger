@@ -1,6 +1,6 @@
 {
   "name": "@kocal/logger",
-  "version": "1.1.1",
+  "version": "0.0.0-development",
   "description": "The Node.js logger I have always dreamed of",
   "main": "index.js",
   "files": [
@@ -8,11 +8,12 @@
   ],
   "scripts": {
     "test": "jest",
-    "release": "standard-version"
+    "travis-deploy-once": "travis-deploy-once",
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Kocal/logger.git"
+    "url": "https://github.com/Kocal/logger.git"
   },
   "keywords": [
     "log",
@@ -31,8 +32,10 @@
     "luxon": "^1.2.1"
   },
   "devDependencies": {
+    "@kocal/semantic-release-preset": "^1.1.0",
     "codecov": "^3.0.0",
     "jest": "^23.0.1",
-    "standard-version": "^4.4.0"
+    "semantic-release": "^15.12.3",
+    "travis-deploy-once": "^5.0.9"
   }
 }
