@@ -28,12 +28,12 @@
   },
   "homepage": "https://github.com/Kocal/logger#readme",
   "dependencies": {
-    "chalk": "^2.3.1",
-    "luxon": "^1.2.1"
+    "chalk": "^2.4.1",
+    "luxon": "^1.8.2"
   },
   "devDependencies": {
     "@kocal/semantic-release-preset": "^1.1.0",
-    "jest": "^23.0.1",
+    "jest": "^23.6.0",
     "semantic-release": "^15.12.3",
     "travis-deploy-once": "^5.0.9"
   }
