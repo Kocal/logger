@@ -16,7 +16,9 @@ $ yarn add @kocal/logger
 ### Basic usage
 
 ```js
-const Logger = require('@kocal/logger');
+import { Logger } from '@kocal/logger';
+// or
+const { Logger } = require('@kocal/logger');
 
 // Default logger
 const logger = Logger.getLogger();
@@ -56,6 +58,8 @@ const logger = Logger.getLogger('my-logger', {
 });
 
 // at runtime
+logger.level = 'info'; 
+// or 
 logger.setLevel('info');
 ```
 
@@ -78,11 +82,14 @@ You can override the format at any moment by calling `logger.setFormat()`:
 
 ```js
 const logger = Logger.getLogger();
-const format = (context, variables) => {
-  return `${context.luxion.toFormat('TT')} :: ${context.message}`
-}
 
-logger.setFormat(format);
+logger.format = (context, variables) => {
+  return `${context.luxon.toFormat('TT')} :: ${context.message}`
+}
+// or
+logger.setFormat((context, variables) => {
+    return `${context.luxon.toFormat('TT')} :: ${context.message}`
+})
 
 logger.log('My message');
 // Write `08:55:28 :: My message`
@@ -95,15 +102,19 @@ You can specify static or dynamic variables like that:
 ```js
 const logger = Logger.getLogger();
 
-logger.setFormat((context, variables) => {
-  return `${context.luxion.toFormat('TT')} :: ${context.message} :: vars = ${JSON.stringify(variables)}`
-});
+logger.format = (context, variables) => {
+  return `${context.luxon.toFormat('TT')} :: ${context.message} :: vars = ${JSON.stringify(variables)}`;
+}
 
 // pass a plain object
-logger.setVariables({ count: 9000, foo: 'bar' })
+logger.variables = { count: 9000, foo: 'bar' }
 // or a function that will be called at each time you log something
-logger.setVariables(() => ({ count: 9000, foo: 'bar' }));
+let anotherVariable = 'bar';
+logger.variables = () => ({ count: 9000, foo: anotherVariable });
 
+// or
+logger.setVariables({ count: 9000, foo: 'bar' })
+logger.setVariables(() => ({ count: 9000, foo: anotherVariable }))
 
 logger.log('My message');
 // Write `08:55:28 :: My message :: vars = {"count":9000,"foo":"bar"}`
@@ -150,17 +161,6 @@ Customize log messages format.
   - `context.luxon`: an instance of [luxon](https://github.com/moment/luxon)
 - `variables`: a fusion of variables defined with `.setVariables` and additional variables from logging methods
 
-### `.setVariables( variables = {} | Function ): void`
-
-Set your own variables.
-
-**Parameters:**
-- `variables`: It can be an object or a function that returns an object.
-
-### `.getVariables(): Object`
-
-Returns variables.
-
 ### `.debug( message, additionalVariables = {} | Function ): void`
 ### `.log( message, additionalVariables = {} | Function ): void`
 ### `.info( message, additionalVariables = {} | Function ): void`
@@ -171,4 +171,4 @@ Log a message.
 
 **Parameters:**
 - `message`: your message 🤷🏻
-- `additionalVariables`: variables that will be merged with logger's variables (`.setVariables`)
+- `additionalVariables`: variables that will be merged with logger's variables.

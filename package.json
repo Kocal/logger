@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "@kocal/semantic-release-preset": "^1.1.0",
+    "@types/luxon": "^1.10.2",
     "@types/node": "^10.12.18",
     "jest": "^23.6.0",
     "rimraf": "^2.6.3",
