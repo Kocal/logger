@@ -1,5 +1,5 @@
 import { Logger } from './logger';
 
 export * from './logger';
-export * from './levels';
+export { Level } from './levels';
 export default Logger;
