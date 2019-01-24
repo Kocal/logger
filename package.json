@@ -32,7 +32,9 @@
   },
   "devDependencies": {
     "@kocal/semantic-release-preset": "^1.1.0",
+    "@types/node": "^10.12.18",
     "jest": "^23.6.0",
-    "semantic-release": "^15.12.3"
+    "semantic-release": "^15.12.3",
+    "typescript": "^3.2.4"
   }
 }
