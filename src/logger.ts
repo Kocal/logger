@@ -2,12 +2,12 @@ import { DateTime } from 'luxon';
 import chalk, { Chalk } from 'chalk';
 import { Level, levels } from './levels';
 
-type Format = (ctx, variables: Variables) => string;
+export type Format = (ctx: Context, variables: Variables) => string;
 
 type VariablesObj = { [k: string]: any }
-type Variables = VariablesObj | (() => VariablesObj);
+export type Variables = VariablesObj | (() => VariablesObj);
 
-interface Context {
+export interface Context {
   level: string;
   message: string;
   name: string;
@@ -16,7 +16,7 @@ interface Context {
   luxon: DateTime;
 }
 
-interface Options {
+export interface Options {
   format?: Format;
   variables?: Variables;
   level?: string;
