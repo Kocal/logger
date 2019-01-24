@@ -1,6 +1,5 @@
-const Logger = require('..');
-
-const chalk = require('chalk');
+import Logger from '.';
+import chalk from 'chalk';
 
 describe('Logger', function () {
   beforeEach(() => {

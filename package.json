@@ -2,11 +2,14 @@
   "name": "@kocal/logger",
   "version": "0.0.0-development",
   "description": "The Node.js logger I have always dreamed of",
-  "main": "index.js",
+  "main": "dist/lib/index.js",
   "files": [
-    "src"
+    "dist"
   ],
+  "typings": "dist/types/index.d.ts",
   "scripts": {
+    "prepublishOnly": "yarn lint && yarn test && yarn build",
+    "build": "rimraf dist && tsc --build tsconfig.build.json",
     "test": "jest",
     "semantic-release": "semantic-release"
   },
@@ -27,12 +30,18 @@
   },
   "homepage": "https://github.com/Kocal/logger#readme",
   "dependencies": {
+    "@types/luxon": "^1.10.2",
     "chalk": "^2.4.1",
     "luxon": "^1.8.2"
   },
   "devDependencies": {
     "@kocal/semantic-release-preset": "^1.1.0",
+    "@types/jest": "^23.3.13",
+    "@types/node": "^10.12.18",
     "jest": "^23.6.0",
-    "semantic-release": "^15.12.3"
+    "rimraf": "^2.6.3",
+    "semantic-release": "^15.12.3",
+    "ts-jest": "^23.10.5",
+    "typescript": "^3.2.4"
   }
 }
