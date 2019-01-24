@@ -1,5 +1,6 @@
 # logger
 
+[![npm version](https://badge.fury.io/js/%40kocal%2Flogger.svg)](https://badge.fury.io/js/%40kocal%2Flogger)
 [![Build Status](https://travis-ci.org/Kocal/logger.svg?branch=master)](https://travis-ci.org/Kocal/logger)
 [![codecov](https://codecov.io/gh/Kocal/logger/branch/master/graph/badge.svg)](https://codecov.io/gh/Kocal/logger)
 
