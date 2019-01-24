@@ -6,6 +6,7 @@
   "files": [
     "dist"
   ],
+  "typings": "dist/types/index.d.ts",
   "scripts": {
     "prepublishOnly": "yarn lint && yarn test && yarn build",
     "build": "rimraf dist && tsc --build tsconfig.build.json",
