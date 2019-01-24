@@ -30,4 +30,6 @@ jobs:
     - stage: Release
       if: branch = master AND type = push
       node_js: node
-      script: yarn semantic-release
+      script:
+        - yarn build 
+        - yarn semantic-release
