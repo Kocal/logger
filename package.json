@@ -30,13 +30,13 @@
   },
   "homepage": "https://github.com/Kocal/logger#readme",
   "dependencies": {
+    "@types/luxon": "^1.10.2",
     "chalk": "^2.4.1",
     "luxon": "^1.8.2"
   },
   "devDependencies": {
     "@kocal/semantic-release-preset": "^1.1.0",
     "@types/jest": "^23.3.13",
-    "@types/luxon": "^1.10.2",
     "@types/node": "^10.12.18",
     "jest": "^23.6.0",
     "rimraf": "^2.6.3",
