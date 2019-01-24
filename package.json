@@ -2,11 +2,13 @@
   "name": "@kocal/logger",
   "version": "0.0.0-development",
   "description": "The Node.js logger I have always dreamed of",
-  "main": "index.js",
+  "main": "dist/lib/index.js",
   "files": [
-    "src"
+    "dist"
   ],
   "scripts": {
+    "prepublishOnly": "yarn lint && yarn test && yarn build",
+    "build": "rimraf dist && tsc --build tsconfig.build.json",
     "test": "jest",
     "semantic-release": "semantic-release"
   },
@@ -34,6 +36,7 @@
     "@kocal/semantic-release-preset": "^1.1.0",
     "@types/node": "^10.12.18",
     "jest": "^23.6.0",
+    "rimraf": "^2.6.3",
     "semantic-release": "^15.12.3",
     "typescript": "^3.2.4"
   }
