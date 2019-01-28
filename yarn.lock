@@ -17,9 +17,9 @@
     js-tokens "^3.0.0"
 
 "@kocal/semantic-release-preset@^1.1.0":
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/@kocal/semantic-release-preset/-/semantic-release-preset-1.1.4.tgz#3e2d7a74e2923e30a91d59dcc40418b7c984d69b"
-  integrity sha512-N8TKjsSbOsj7h2AX3/tixiUT9MPzvjdmZ5b5sW7Jcj98OVTmaHw4Nfoe0E/3TIh+yCz7RoOlEJqpMGkxo5Z6FQ==
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@kocal/semantic-release-preset/-/semantic-release-preset-1.1.5.tgz#2aee2dcc83702b251d9517b00c44310703d49209"
+  integrity sha512-t2qIv4WMZkwyIxc9Ggm8X94WEp440X8HyQFVPeWfh2MAdee5e+JZBkHGLE7ObS8ZheBMDkjxtIfDNaZbXP6d5g==
   dependencies:
     "@semantic-release/commit-analyzer" "^6.1.0"
     "@semantic-release/github" "^5.2.1"
