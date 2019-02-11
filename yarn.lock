@@ -153,9 +153,9 @@
   integrity sha512-ePl4l+7dLLmCucIwgQHAgjiepY++qcI6nb8eAwGNkB6OxmTe3Z9rQU3rSpomqu42PCCnlThZbOoxsf+qylJsLA==
 
 "@types/luxon@^1.10.2":
-  version "1.10.2"
-  resolved "https://registry.yarnpkg.com/@types/luxon/-/luxon-1.10.2.tgz#36ed140a3dadea3e7be4982cecb47d89aa098a20"
-  integrity sha512-LEqrz+1tzeWwyzmC9hJ6negMjGGc1ABaAwVPwkeN1a2/Oqql/SowlcENFd5e2EkWYJd7FhMojFBTuyWOPUx8sg==
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/@types/luxon/-/luxon-1.11.0.tgz#862041d849bafb991937f25f68d2ff0a4ca3f1e2"
+  integrity sha512-4MBC4fp+W+LJ7Abr03qJtJn2yS6sy9B9xgU+fEaWiIHYxRkFgLVl4WEsLK/dKYXe8VdWtLM4fED4HWaJpMnJMg==
 
 "@types/node@^10.12.18":
   version "10.12.21"
