@@ -1,5 +1,6 @@
 import Logger from '.';
 import chalk from 'chalk';
+import { format } from 'date-fns';
 
 describe('Logger', function () {
   beforeEach(() => {
@@ -17,44 +18,45 @@ describe('Logger', function () {
   });
 
   test('default format', () => {
+    const date = jest.spyOn(Date, 'now').mockImplementation(() => 1547555410000); // 2019-01-15 12:30:12
     const logger = Logger.getLogger('default-format');
     logger.setLevel('debug');
 
     logger.debug('Debug message');
-    expect(console.debug).toHaveBeenLastCalledWith(chalk`2018-02-17 08:30:00 :: default-format :: {cyanBright debug} :: Debug message`);
+    expect(console.debug).toHaveBeenLastCalledWith(chalk`2019-01-15T12:30:10.000Z :: default-format :: {cyanBright debug} :: Debug message`);
 
     logger.log('Log message');
-    expect(console.log).toHaveBeenLastCalledWith(chalk`2018-02-17 08:30:00 :: default-format :: {green log} :: Log message`);
+    expect(console.log).toHaveBeenLastCalledWith(chalk`2019-01-15T12:30:10.000Z :: default-format :: {green log} :: Log message`);
 
     logger.info('Info message');
-    expect(console.info).toHaveBeenLastCalledWith(chalk`2018-02-17 08:30:00 :: default-format :: {blue info} :: Info message`);
+    expect(console.info).toHaveBeenLastCalledWith(chalk`2019-01-15T12:30:10.000Z :: default-format :: {blue info} :: Info message`);
 
     logger.warn('Warn message');
-    expect(console.warn).toHaveBeenLastCalledWith(chalk`2018-02-17 08:30:00 :: default-format :: {yellow warn} :: Warn message`);
+    expect(console.warn).toHaveBeenLastCalledWith(chalk`2019-01-15T12:30:10.000Z :: default-format :: {yellow warn} :: Warn message`);
 
     logger.error('Error message');
-    expect(console.error).toHaveBeenLastCalledWith(chalk`2018-02-17 08:30:00 :: default-format :: {redBright error} :: Error message`);
+    expect(console.error).toHaveBeenLastCalledWith(chalk`2019-01-15T12:30:10.000Z :: default-format :: {redBright error} :: Error message`);
   });
 
   test('custom format', () => {
     const logger = Logger.getLogger('custom-format');
     logger.setLevel('debug');
-    logger.setFormat((ctx, variables) => `${ctx.luxon.toFormat('yyyy-LL-dd')} - ${ctx.level} - ${ctx.message}`);
+    logger.setFormat((ctx, variables) => `${format(ctx.date, 'YYYY-MM-DD')} - ${ctx.level} - ${ctx.message}`);
 
     logger.debug('Debug message');
-    expect(console.debug).toHaveBeenLastCalledWith('2018-02-17 - debug - Debug message');
+    expect(console.debug).toHaveBeenLastCalledWith('2019-01-15 - debug - Debug message');
 
     logger.log('Log message');
-    expect(console.log).toHaveBeenLastCalledWith('2018-02-17 - log - Log message');
+    expect(console.log).toHaveBeenLastCalledWith('2019-01-15 - log - Log message');
 
     logger.info('Info message');
-    expect(console.info).toHaveBeenLastCalledWith('2018-02-17 - info - Info message');
+    expect(console.info).toHaveBeenLastCalledWith('2019-01-15 - info - Info message');
 
     logger.warn('Warn message');
-    expect(console.warn).toHaveBeenLastCalledWith('2018-02-17 - warn - Warn message');
+    expect(console.warn).toHaveBeenLastCalledWith('2019-01-15 - warn - Warn message');
 
     logger.error('Error message');
-    expect(console.error).toHaveBeenLastCalledWith('2018-02-17 - error - Error message');
+    expect(console.error).toHaveBeenLastCalledWith('2019-01-15 - error - Error message');
   });
 
   test('context variables', () => {
