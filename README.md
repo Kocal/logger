@@ -25,21 +25,21 @@ const { Logger } = require('@kocal/logger');
 const logger = Logger.getLogger();
 
 logger.debug('My message');
-// Write `Tue Jan 15 2019 13:30:10 GMT+0100 (CET):: default :: debug :: My message`
+// Write `2019-01-15T12:30:10.000Z:: default :: debug :: My message`
 logger.log('My message');
-// Write `Tue Jan 15 2019 13:30:10 GMT+0100 (CET) :: default :: log :: My message`
+// Write `2019-01-15T12:30:10.000Z :: default :: log :: My message`
 logger.info('My message');
-// Write `Tue Jan 15 2019 13:30:10 GMT+0100 (CET) :: info :: My message`
+// Write `2019-01-15T12:30:10.000Z :: info :: My message`
 logger.warn('My message');
-// Write `Tue Jan 15 2019 13:30:10 GMT+0100 (CET) :: default :: warn :: My message`
+// Write `2019-01-15T12:30:10.000Z :: default :: warn :: My message`
 logger.error('My message');
-// Write `Tue Jan 15 2019 13:30:10 GMT+0100 (CET) :: default :: error :: My message`
+// Write `2019-01-15T12:30:10.000Z :: default :: error :: My message`
 
 // Named logger
 const namedLogger = Logger.getLogger('my-name');
 
 namedLogger.debug('My message');
-// Write `Tue Jan 15 2019 13:30:10 GMT+0100 (CET) :: my-name :: debug :: My message`
+// Write `2019-01-15T12:30:10.000Z :: my-name :: debug :: My message`
 ```
 
 ### Custom level
@@ -77,7 +77,7 @@ logger.debug('Message');
 
 ### Custom format
 
-The default format is: `Date :: loggerName :: levelColor(level) :: message`.
+The default format is: `Date.toISOString() :: loggerName :: levelColor(level) :: message`.
 
 You can override the format at any moment by calling `logger.setFormat()`:
 
@@ -85,15 +85,15 @@ You can override the format at any moment by calling `logger.setFormat()`:
 const logger = Logger.getLogger();
 
 logger.format = (context, variables) => {
-  return `${context.date} :: ${context.message}`
+  return `${context.date.toISOString()} :: ${context.message}`
 }
 // or
 logger.setFormat((context, variables) => {
-    return `${context.date} :: ${context.message}`
+    return `${context.date.toISOString()} :: ${context.message}`
 })
 
 logger.log('My message');
-// Write `Tue Jan 15 2019 13:30:10 GMT+0100 (CET) :: My message`
+// Write `2019-01-15T12:30:10.000Z :: My message`
 ```
 
 ### Formatting the date
@@ -110,7 +110,7 @@ import { format as formatDate } from 'date-fns';
 
 const logger = Logger.getLogger();
 logger.format = (context, variables) => {
-  return `${formatDate(context.date, 'YYYY-MM-DD HH:mm:ss') :: ${context.message}`;
+  return `${formatDate(context.date, 'YYYY-MM-DD HH:mm:ss')} :: ${context.message}`;
 }
 
 logger.log('My message');
@@ -140,7 +140,7 @@ logger.setVariables({ count: 9000, foo: 'bar' })
 logger.setVariables(() => ({ count: 9000, foo: anotherVariable }))
 
 logger.log('My message');
-// Write `Tue Jan 15 2019 13:30:10 GMT+0100 (CET) :: My message :: vars = {"count":9000,"foo":"bar"}`
+// Write `2019-01-15T12:30:10.000Z :: My message :: vars = {"count":9000,"foo":"bar"}`
 ```
 
 ### Additional variables
@@ -150,11 +150,11 @@ All logs methods have a 2nd parameters where you can pass additional variables:
 ```js
 // pass a plain object
 logger.log('My message', { count: 1234 });
-// Write `Tue Jan 15 2019 13:30:10 GMT+0100 (CET) :: My message :: vars = {"count":1234,"foo":"bar"}`
+// Write `2019-01-15T12:30:10.000Z :: My message :: vars = {"count":1234,"foo":"bar"}`
 
 // or a function
 logger.log('My message', () => ({ count: 1234 }));
-// Write `Tue Jan 15 2019 13:30:10 GMT+0100 (CET) :: My message :: vars = {"count":1234,"foo":"bar"}`
+// Write `2019-01-15T12:30:10.000Z :: My message :: vars = {"count":1234,"foo":"bar"}`
 
 ```
 

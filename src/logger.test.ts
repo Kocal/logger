@@ -23,19 +23,19 @@ describe('Logger', function () {
     logger.setLevel('debug');
 
     logger.debug('Debug message');
-    expect(console.debug).toHaveBeenLastCalledWith(chalk`Tue Jan 15 2019 13:30:10 GMT+0100 (CET) :: default-format :: {cyanBright debug} :: Debug message`);
+    expect(console.debug).toHaveBeenLastCalledWith(chalk`2019-01-15T12:30:10.000Z :: default-format :: {cyanBright debug} :: Debug message`);
 
     logger.log('Log message');
-    expect(console.log).toHaveBeenLastCalledWith(chalk`Tue Jan 15 2019 13:30:10 GMT+0100 (CET) :: default-format :: {green log} :: Log message`);
+    expect(console.log).toHaveBeenLastCalledWith(chalk`2019-01-15T12:30:10.000Z :: default-format :: {green log} :: Log message`);
 
     logger.info('Info message');
-    expect(console.info).toHaveBeenLastCalledWith(chalk`Tue Jan 15 2019 13:30:10 GMT+0100 (CET) :: default-format :: {blue info} :: Info message`);
+    expect(console.info).toHaveBeenLastCalledWith(chalk`2019-01-15T12:30:10.000Z :: default-format :: {blue info} :: Info message`);
 
     logger.warn('Warn message');
-    expect(console.warn).toHaveBeenLastCalledWith(chalk`Tue Jan 15 2019 13:30:10 GMT+0100 (CET) :: default-format :: {yellow warn} :: Warn message`);
+    expect(console.warn).toHaveBeenLastCalledWith(chalk`2019-01-15T12:30:10.000Z :: default-format :: {yellow warn} :: Warn message`);
 
     logger.error('Error message');
-    expect(console.error).toHaveBeenLastCalledWith(chalk`Tue Jan 15 2019 13:30:10 GMT+0100 (CET) :: default-format :: {redBright error} :: Error message`);
+    expect(console.error).toHaveBeenLastCalledWith(chalk`2019-01-15T12:30:10.000Z :: default-format :: {redBright error} :: Error message`);
   });
 
   test('custom format', () => {

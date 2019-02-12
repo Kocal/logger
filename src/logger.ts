@@ -24,7 +24,7 @@ export interface Options {
 const loggers: { [k: string]: Logger } = {};
 
 const defaultFormat = (ctx: Context, variables: Variables) => {
-  return `${ctx.date} :: ${ctx.name} :: ${ctx.levelColor(ctx.level)} :: ${ctx.message}`;
+  return `${ctx.date.toISOString()} :: ${ctx.name} :: ${ctx.levelColor(ctx.level)} :: ${ctx.message}`;
 };
 
 export class Logger {
