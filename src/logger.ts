@@ -1,4 +1,3 @@
-import { DateTime } from 'luxon';
 import chalk, { Chalk } from 'chalk';
 import { Level, levels } from './levels';
 
@@ -13,7 +12,7 @@ export interface Context {
   name: string;
   chalk: Chalk;
   levelColor: Chalk;
-  luxon: DateTime;
+  date: Date;
 }
 
 export interface Options {
@@ -25,7 +24,7 @@ export interface Options {
 const loggers: { [k: string]: Logger } = {};
 
 const defaultFormat = (ctx: Context, variables: Variables) => {
-  return `${ctx.luxon.toFormat('yyyy-LL-dd TT')} :: ${ctx.name} :: ${ctx.levelColor(ctx.level)} :: ${ctx.message}`;
+  return `${ctx.date} :: ${ctx.name} :: ${ctx.levelColor(ctx.level)} :: ${ctx.message}`;
 };
 
 export class Logger {
@@ -91,7 +90,7 @@ export class Logger {
       message,
       chalk,
       name: this.name,
-      luxon: DateTime.local(),
+      date: new Date(Date.now()),
       levelColor: levels[level].color,
     };
   }
