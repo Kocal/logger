@@ -30,9 +30,7 @@
   },
   "homepage": "https://github.com/Kocal/logger#readme",
   "dependencies": {
-    "@types/luxon": "^1.10.2",
-    "chalk": "^2.4.1",
-    "luxon": "^1.8.2"
+    "chalk": "^2.4.1"
   },
   "devDependencies": {
     "@kocal/semantic-release-preset": "^1.1.0",
