@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/Kocal/logger#readme",
   "dependencies": {
-    "chalk": "^2.4.1"
+    "chalk": "^3.0.0"
   },
   "devDependencies": {
     "@kocal/semantic-release-preset": "^1.1.0",
