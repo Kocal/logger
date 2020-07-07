@@ -33,7 +33,7 @@
     "chalk": "^2.4.1"
   },
   "devDependencies": {
-    "@kocal/semantic-release-preset": "^1.1.0",
+    "@kocal/semantic-release-preset": "^2.0.3",
     "@types/jest": "^24.0.9",
     "@types/node": "^13.1.4",
     "date-fns": "^1.30.1",
